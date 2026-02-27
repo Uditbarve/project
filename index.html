@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Local Shop</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f9fafb;color:#333;overflow-x:hidden}
+
+/* HEADER */
+header{
+position:fixed;
+top:0;left:0;width:100%;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+z-index:1000;
+}
+header h2{font-size:18px}
+.tagline{font-size:12px;color:#777}
+
+/* HERO */
+.hero{
+height:100vh;
+background:url('https://clipart-library.com/2023/grocery-store-clipart-xl.png') center/cover no-repeat;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:#fff;
+padding:20px;
+margin-top:60px;
+}
+.hero h1{
+font-size:36px;
+background:rgba(0,0,0,0.6);
+padding:15px 25px;
+border-radius:8px;
+}
+.hero button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+background:#16a34a;
+color:#fff;
+font-size:16px;
+border-radius:25px;
+cursor:pointer;
+}
+
+/* PRODUCTS */
+.products{
+padding:50px 20px;
+}
+.products h2{text-align:center;margin-bottom:30px}
+.carousel{
+display:flex;
+gap:20px;
+overflow-x:auto;
+scroll-behavior:smooth;
+padding-bottom:20px;
+}
+.carousel::-webkit-scrollbar{display:none}
+
+.card{
+min-width:250px;
+background:#fff;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+padding:15px;
+text-align:center;
+}
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:8px;
+}
+.card h4{margin:10px 0}
+.card p{color:#16a34a;font-weight:600}
+.card button{
+margin-top:10px;
+padding:8px 15px;
+border:none;
+background:#16a34a;
+color:#fff;
+border-radius:20px;
+cursor:pointer;
+}
+
+/* FLOATING CART */
+.cart-icon{
+position:fixed;
+right:20px;
+bottom:90px;
+background:#16a34a;
+color:#fff;
+width:55px;height:55px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+.cart-count{
+position:absolute;
+top:-5px;right:-5px;
+background:red;
+color:#fff;
+width:20px;height:20px;
+border-radius:50%;
+font-size:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* CART DRAWER */
+.cart-drawer{
+position:fixed;
+right:-100%;
+top:0;
+width:100%;
+max-width:400px;
+height:100%;
+background:#fff;
+box-shadow:-5px 0 15px rgba(0,0,0,0.1);
+padding:20px;
+transition:0.4s;
+overflow-y:auto;
+z-index:2000;
+}
+.cart-drawer.active{right:0}
+.cart-drawer h3{margin-bottom:10px}
+.cart-item{margin-bottom:8px;font-size:14px}
+.close-btn{
+text-align:right;
+cursor:pointer;
+font-size:18px;
+margin-bottom:10px;
+}
+
+/* FORM */
+form input{
+width:100%;
+padding:8px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:6px;
+}
+form button{
+width:100%;
+padding:10px;
+border:none;
+background:#16a34a;
+color:#fff;
+border-radius:25px;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+width:55px;height:55px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#fff;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+@media(min-width:768px){
+.hero h1{font-size:48px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div>
+<h2>The Local Shop</h2>
+<div class="tagline">Fresh Finds, Best Prices</div>
+</div>
+</header>
+
+<section class="hero">
+<h1>Welcome to The Local Shop</h1>
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+Shop Now
+</button>
+</section>
+
+<section class="products" id="products">
+<h2>Our Products</h2>
+<div class="carousel">
+
+<div class="card">
+<img src="https://i.ibb.co/B506TYtF/Screenshot-3.png">
+<h4>Fresh Vegetables</h4>
+<p>₹120</p>
+<button onclick="addToCart('Fresh Vegetables',120)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/Y71mpWwj/5718880755.jpg">
+<h4>Grocery Pack</h4>
+<p>₹250</p>
+<button onclick="addToCart('Grocery Pack',250)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/5hybFcL1/5658965020.jpg">
+<h4>Daily Essentials</h4>
+<p>₹180</p>
+<button onclick="addToCart('Daily Essentials',180)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- CART ICON -->
+<div class="cart-icon" onclick="toggleCart()">
+🛒
+<div class="cart-count" id="cartCount">0</div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+<div class="close-btn" onclick="toggleCart()">✖</div>
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+
+<h3>Customer Details</h3>
+<form id="orderForm">
+<input type="text" id="customerName" placeholder="Your Name" required>
+<input type="tel" id="customerPhone" placeholder="Phone Number" required>
+<button type="submit">Send Order</button>
+</form>
+</div>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/99999999" class="whatsapp" target="_blank">🟢</a>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+
+let cart=[];
+function addToCart(name,price){
+cart.push({name,price});
+document.getElementById('cartCount').innerText=cart.length;
+renderCart();
+}
+function renderCart(){
+let container=document.getElementById('cartItems');
+container.innerHTML="";
+cart.forEach(item=>{
+container.innerHTML+=`<div class="cart-item">${item.name} - ₹${item.price}</div>`;
+});
+}
+function toggleCart(){
+document.getElementById('cartDrawer').classList.toggle('active');
+}
+
+document.getElementById("orderForm").addEventListener("submit",function(e){
+e.preventDefault();
+if(cart.length===0){alert("Cart is empty!");return;}
+
+let itemsList=cart.map(i=>i.name+" - ₹"+i.price).join(", ");
+
+let templateParams={
+customer_name:document.getElementById("customerName").value,
+customer_phone:document.getElementById("customerPhone").value,
+order_items:itemsList,
+to_email:"uditbarve@gmail.com"
+};
+
+emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",templateParams)
+.then(function(){
+alert("Order Sent Successfully!");
+cart=[];
+renderCart();
+document.getElementById("cartCount").innerText=0;
+document.getElementById("orderForm").reset();
+toggleCart();
+},function(error){
+alert("Failed to send order.");
+});
+});
+</script>
+
+</body>
+</html>
